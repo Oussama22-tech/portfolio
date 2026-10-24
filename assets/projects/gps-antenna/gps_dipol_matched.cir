@@ -1,0 +1,22 @@
+* GPS-Dipol MIT L-Anpassnetzwerk (73 Ohm -> 50 Ohm bei 1,575 GHz)
+*
+* Lm in Serie (Quellseite), Cm parallel zur Antenne (Antennenseite)
+*
+* Nach dem Run im Plotfenster: Rechtsklick > Add Traces
+*   S11:        2*V(in)-1
+*   Impedanz:   V(in)/I(Rs)
+
+V1 src 0 AC 1
+Rs src in 50
+
+* Anpassnetzwerk
+Lm in a 3.427n
+Cm a 0 0.939p
+
+* Antenne (unverändert)
+Rant a n1 73
+Lant n1 n2 73.77n
+Cant n2 0 138.4f
+
+.ac lin 801 1.2G 2.0G
+.end

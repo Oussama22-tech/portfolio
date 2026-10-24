@@ -1,0 +1,17 @@
+* GPS-Dipol als Serien-RLC-Ersatzschaltbild, "gemessen" wie mit einem VNA
+*
+* V1 + Rs = VNA-Port: Quelle mit 50 Ohm Innenwiderstand
+* Rant, Lant, Cant = Antenne nahe der Resonanz (f0 = 1,575 GHz, R = 73 Ohm, Q = 10)
+*
+* Nach dem Run im Plotfenster: Rechtsklick > Add Traces
+*   S11:        2*V(in)-1
+*   Impedanz:   V(in)/I(Rs)
+
+V1 src 0 AC 1
+Rs src in 50
+Rant in n1 73
+Lant n1 n2 73.77n
+Cant n2 0 138.4f
+
+.ac lin 801 1.2G 2.0G
+.end
