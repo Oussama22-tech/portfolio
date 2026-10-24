@@ -305,6 +305,9 @@
   #s11-chart { width: 100%; height: auto; display: block; touch-action: pan-y; cursor: crosshair; }
   #s11-chart text { font-family: "IBM Plex Sans", sans-serif; font-size: 11px; fill: #93A4BA; }
   .chart-note { font-size: 0.8rem; color: var(--muted); margin: 8px 2px 0; }
+  .schem-wrap { border-radius: 12px; overflow-x: auto; border: 1px solid var(--trace); background: #C3C3C3; }
+  .schem { display: block; width: 100%; height: auto; }
+  @media (max-width: 620px) { .schem { min-width: 560px; } }
   .model-img { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid var(--trace); }
   @media (max-width: 920px) { .feature-proj { grid-template-columns: 1fr; padding: 18px; } }
   @media (max-width: 460px) { .metrics { grid-template-columns: 1fr; } }
@@ -627,6 +630,7 @@
           <div>
             <div class="view-tabs" role="tablist" aria-label="Project views">
               <button type="button" role="tab" id="vt-chart" aria-controls="vp-chart" aria-selected="true">S11 response</button>
+              <button type="button" role="tab" id="vt-schem" aria-controls="vp-schem" aria-selected="false" tabindex="-1">Schematic</button>
               <button type="button" role="tab" id="vt-model" aria-controls="vp-model" aria-selected="false" tabindex="-1">Antenna model</button>
             </div>
             <div class="view-panel" id="vp-chart" role="tabpanel" aria-labelledby="vt-chart">
@@ -639,6 +643,10 @@
                 <svg id="s11-chart" viewBox="0 0 560 300" role="img" aria-label="S11 in dB from 1.2 to 2.0 GHz. Without matching the minimum is minus 14.6 dB at 1.575 GHz; with the L-network it drops below minus 40 dB."></svg>
               </div>
               <p class="chart-note">Lower is better: less power reflected back into the cable. The matched curve reaches −62 dB at 1.575 GHz (clipped at −40 dB here).</p>
+            </div>
+            <div class="view-panel" id="vp-schem" role="tabpanel" aria-labelledby="vt-schem" hidden>
+              <div class="schem-wrap"><svg class="schem" viewBox="0 0 720 370" role="img" aria-label="LTspice schematic: 1 volt AC source with 50 ohm source resistor Rs, series inductor Lm 3.427 nanohenry and shunt capacitor Cm 0.939 picofarad forming the L-matching network, then the antenna model Rant 73 ohm, Lant 73.77 nanohenry and Cant 138.4 femtofarad in series to ground." font-family="Arial, Helvetica, sans-serif"><rect width="720" height="370" fill="#C3C3C3"/><rect x="226" y="58" width="168" height="232" fill="none" stroke="#2A6E2A" stroke-width="1.5" stroke-dasharray="6 5"/><text x="310" y="50" text-anchor="middle" fill="#2A6E2A" font-weight="700" font-size="13">L-matching network</text><rect x="400" y="58" width="300" height="232" fill="none" stroke="#8A3A1A" stroke-width="1.5" stroke-dasharray="6 5"/><text x="550" y="50" text-anchor="middle" fill="#8A3A1A" font-weight="700" font-size="13">Antenna: series RLC model</text><path d="M70 110V168M70 212V262M70 110H110M186 110H250M310 110H420M496 110H510M570 110H650V172M650 182V262M360 110V172M360 182V262" fill="none" stroke="#2626D9" stroke-width="2"/><circle cx="70" cy="190" r="22" fill="none" stroke="#0B0B6E" stroke-width="2.4"/><path d="M70 176V188M64 182H76M64 200H76" stroke="#0B0B6E" stroke-width="2"/><path d="M70 262H56L70 276L84 262Z" fill="none" stroke="#0B0B6E" stroke-width="2"/><text x="100" y="186" text-anchor="start" fill="#000" font-weight="700" font-size="14">V1</text><text x="100" y="206" text-anchor="start" fill="#000" font-weight="700" font-size="13">AC 1</text><path d="M110 110 L118 110 L124 100 L136 120 L148 100 L160 120 L172 100 L178 110 L186 110" fill="none" stroke="#0B0B6E" stroke-width="2.4" stroke-linejoin="round"/><text x="148" y="88" text-anchor="middle" fill="#000" font-weight="700" font-size="14">Rs</text><text x="148" y="140" text-anchor="middle" fill="#000" font-weight="700" font-size="14">50</text><rect x="218" y="106" width="8" height="8" fill="#2626D9"/><text x="222" y="98" text-anchor="middle" fill="#000" font-weight="700" font-size="13">in</text><path d="M250 110 a7.5 7.5 0 0 1 15 0 a7.5 7.5 0 0 1 15 0 a7.5 7.5 0 0 1 15 0 a7.5 7.5 0 0 1 15 0" fill="none" stroke="#0B0B6E" stroke-width="2.4"/><text x="280" y="88" text-anchor="middle" fill="#000" font-weight="700" font-size="14">Lm</text><text x="280" y="140" text-anchor="middle" fill="#000" font-weight="700" font-size="14">3.427n</text><rect x="356" y="106" width="8" height="8" fill="#2626D9"/><text x="360" y="98" text-anchor="middle" fill="#000" font-weight="700" font-size="13">a</text><path d="M340 172H380M340 182H380" stroke="#0B0B6E" stroke-width="3"/><path d="M360 262H346L360 276L374 262Z" fill="none" stroke="#0B0B6E" stroke-width="2"/><text x="334" y="172" text-anchor="end" fill="#000" font-weight="700" font-size="14">Cm</text><text x="334" y="192" text-anchor="end" fill="#000" font-weight="700" font-size="14">0.939p</text><path d="M420 110 L428 110 L434 100 L446 120 L458 100 L470 120 L482 100 L488 110 L496 110" fill="none" stroke="#0B0B6E" stroke-width="2.4" stroke-linejoin="round"/><text x="458" y="88" text-anchor="middle" fill="#000" font-weight="700" font-size="14">Rant</text><text x="458" y="140" text-anchor="middle" fill="#000" font-weight="700" font-size="14">73</text><path d="M510 110 a7.5 7.5 0 0 1 15 0 a7.5 7.5 0 0 1 15 0 a7.5 7.5 0 0 1 15 0 a7.5 7.5 0 0 1 15 0" fill="none" stroke="#0B0B6E" stroke-width="2.4"/><text x="540" y="88" text-anchor="middle" fill="#000" font-weight="700" font-size="14">Lant</text><text x="540" y="140" text-anchor="middle" fill="#000" font-weight="700" font-size="14">73.77n</text><path d="M630 172H670M630 182H670" stroke="#0B0B6E" stroke-width="3"/><path d="M650 262H636L650 276L664 262Z" fill="none" stroke="#0B0B6E" stroke-width="2"/><text x="624" y="172" text-anchor="end" fill="#000" font-weight="700" font-size="14">Cant</text><text x="624" y="192" text-anchor="end" fill="#000" font-weight="700" font-size="14">138.4f</text><text x="40" y="322" text-anchor="start" fill="#000" font-weight="700" font-size="14">.ac lin 801 1.2G 2.0G</text><text x="40" y="346" text-anchor="start" fill="#2626D9" font-weight="700" font-size="13">GPS dipole at 1.575 GHz with L-network: 73 Ω → 50 Ω</text></svg></div>
+              <p class="chart-note">Redrawn from my LTspice netlist. Rs is the 50 Ω port of the network analyzer; the matched node "in" is where S11 = 2·V(in) − 1 is measured.</p>
             </div>
             <div class="view-panel" id="vp-model" role="tabpanel" aria-labelledby="vt-model" hidden>
               <div class="model-img"><img src="assets/projects/gps-antenna/dipole-rlc-model.png" alt="Half-wave dipole next to its series RLC equivalent: R about 73 ohms for radiated power, L about 74 nH for magnetic field energy, C about 0.14 pF for electric field energy." loading="lazy"></div>
@@ -1019,7 +1027,7 @@ for i, name in enumerate(['Ear Shape', 'Face Shape', 'Whiskers']):
 
   // GPS antenna: view tabs + interactive S11 chart
   (function () {
-    var vtabs = [document.getElementById('vt-chart'), document.getElementById('vt-model')];
+    var vtabs = [document.getElementById('vt-chart'), document.getElementById('vt-schem'), document.getElementById('vt-model')];
     vtabs.forEach(function (t) {
       t.addEventListener('click', function () {
         vtabs.forEach(function (o) {
